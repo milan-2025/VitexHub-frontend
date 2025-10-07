@@ -41,3 +41,25 @@ export function doConfimPasswordMatch(
     message: "Confirm Password and Password do not match.",
   }
 }
+
+export function isValidPassword(value: string): IsValid {
+  const passwordRegex = new RegExp(
+    "^(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9]).{8,}$"
+  )
+
+  return {
+    chk: passwordRegex.test(value),
+    message:
+      "Password must have atleast 1 capital letter 1 number and 1 special symbol and must be atleast 8 characters long.",
+  }
+}
+
+export function isValidUserName(value: string): IsValid {
+  const usernameRegex = /^[a-zA-Z][a-zA-Z0-9_]{7,}$/
+
+  return {
+    chk: usernameRegex.test(value),
+    message:
+      "Username must start with a letter, can contain numbers, can only contain _ as special charecter (no spaces) and must be atleast 8 characters long.",
+  }
+}

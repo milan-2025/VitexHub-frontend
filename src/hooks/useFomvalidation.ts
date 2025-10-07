@@ -4,33 +4,35 @@ interface IsValid {
   message: string
   chk: boolean
 }
-const useFormValidation = (
-  initialValue: string,
-  validationFn: (val: string) => IsValid
-) => {
+const useFormValidation = (initialValue: string, validationFn: any) => {
   const [value, setValue] = useState(initialValue)
   const [didEdit, setDidEdit] = useState(false)
-  let hasError: IsValid
+  const [error, setError] = useState<IsValid | null>(null)
+  //   let hasError: IsValid | undefined
   const handleBlur = () => {
     setDidEdit(true)
+    let result = validationFn()
+    setError(result)
   }
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDidEdit(true)
     setValue(e.target.value)
-  }
-  if (didEdit) {
-    hasError = validationFn(value)
+    let result = validationFn()
+    setError(result)
   }
 
   useEffect(() => {
     if (value && value.trim().length > 0) {
       setDidEdit(true)
+      let result = validationFn()
+      setError(result)
     }
   }, [value])
 
   return {
     value,
     didEdit,
+    error,
     setValue,
     setDidEdit,
     handleBlur,
