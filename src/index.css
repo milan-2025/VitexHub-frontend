@@ -116,7 +116,7 @@
   }
   body {
     @apply bg-background text-foreground;
-    background-color: #f5f7f8;
+    background-color: #f0f2f5;
     max-width: 100vw;
   }
 }
@@ -126,7 +126,7 @@
     @apply cursor-pointer hover:bg-blue-200 py-1 px-2 rounded-xl;
   }
   .text-input-default {
-    @apply w-full rounded-4xl p-3 text-[1rem] bg-[#f5f7f8]  transition duration-150 ease-in-out
+    @apply w-full rounded-4xl  h-[2.5rem] px-3 text-[1rem] bg-[#f0f2f5]  transition duration-150 ease-in-out
   focus:outline-none 
     focus:ring-2
     focus:ring-blue-500/50 
@@ -136,9 +136,13 @@
     @apply cursor-pointer text-blue-400 text-sm font-medium;
   }
   .card {
-    @apply flex flex-col rounded-2xl justify-center bg-white w-full p-6;
+    @apply flex flex-col rounded-2xl shadow-2xl justify-center bg-white w-full p-6;
   }
   .error-text {
     @apply text-sm text-red-500;
+  }
+  .eye-position {
+    @apply absolute right-3 top-[65%] transform -translate-y-1/2 
+      h-6 w-6 cursor-pointer;
   }
 }
